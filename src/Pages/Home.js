@@ -1,10 +1,16 @@
 import React from 'react';
 import Banner from './Banner';
+import Info from './Info';
+import MakeAppointment from './MakeAppointment';
+import Services from './Services';
 
 const Home = () => {
     return (
-        <div>
+        <div className="px-16">
             <Banner/>
+            <Info/>
+            <Services/>
+            <MakeAppointment/>
         </div>
     );
 };

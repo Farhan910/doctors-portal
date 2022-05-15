@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+
 const Navbar = () => {
   const menuItems = (
     <>
@@ -25,7 +26,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <div>
+    <div className="">
       <div class="navbar">
         <div class="navbar-start">
           <div class="dropdown">
