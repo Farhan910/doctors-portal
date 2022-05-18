@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Appointment = () => {
+const MyReview = () => {
     return (
         <div>
-            
+            <h2>my apooo</h2>
         </div>
     );
 };
 
-export default Appointment;
+export default MyReview;
