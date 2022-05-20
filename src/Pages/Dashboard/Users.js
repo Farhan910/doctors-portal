@@ -4,12 +4,16 @@ import Loading from "../Loading";
 import UserRow from "./UserRow";
 
 const Users = () => {
-  const { data: users, isLoading,refetch } = useQuery("users", () =>
-    fetch("http://localhost:5000/user" , { 
-        method: "GET",
-        headers: {
-            authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-        }
+  const {
+    data: users,
+    isLoading,
+    refetch,
+  } = useQuery("users", () =>
+    fetch("https://polar-river-10521.herokuapp.com/user", {
+      method: "GET",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
     }).then((res) => res.json())
   );
   if (isLoading) {
@@ -29,13 +33,9 @@ const Users = () => {
             </tr>
           </thead>
           <tbody>
-              {
-                    users.map(user => <UserRow
-                    key={user._id}
-                    user={user}
-                    refetch={refetch}
-                    ></UserRow>)
-              }
+            {users.map((user) => (
+              <UserRow key={user._id} user={user} refetch={refetch}></UserRow>
+            ))}
           </tbody>
         </table>
       </div>
