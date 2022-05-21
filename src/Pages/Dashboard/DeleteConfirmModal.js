@@ -1,43 +1,54 @@
 import React from "react";
 import { toast } from "react-toastify";
 
-const DeleteConfirmModal = ({doctorDeleting,refetch,setDoctorDeleting}) => {
-  const { name,email } =doctorDeleting;
+const DeleteConfirmModal = ({ doctorDeleting, refetch, setDoctorDeleting }) => {
+  const { name, email } = doctorDeleting;
 
   const handleDelete = () => {
-    fetch(`http://localhost:5000/doctor/${email}`, { 
-          method: 'DELETE',
-          headers: {
-              authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-          }
+    fetch(`https://polar-river-10521.herokuapp.com/doctor/${email}`, {
+      method: "DELETE",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      },
     })
-    .then(res => res.json())
-    .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         console.log(data);
-        if(data.deletedCount){
-            toast.success(`Doctor : ${name} is Deleted`)
-            setDoctorDeleting(null)
-            refetch()
+        if (data.deletedCount) {
+          toast.success(`Doctor : ${name} is Deleted`);
+          setDoctorDeleting(null);
+          refetch();
         }
-    })
-}
-    
+      });
+  };
+
   return (
     <div>
-     
-      <input type="checkbox" id="delete-confirm-modal" class="modal-toggle" />
-      <div class="modal modal-bottom sm:modal-middle">
-        <div class="modal-box">
-          <h3 class="font-bold text-lg text-red-500" >
-            Are you want to sure to  delete  ${name} 
+      <input
+        type="checkbox"
+        id="delete-confirm-modal"
+        className="modal-toggle"
+      />
+      <div className="modal modal-bottom sm:modal-middle">
+        <div className="modal-box">
+          <h3 className="font-bold text-lg text-red-500">
+            Are you want to sure to delete ${name}
           </h3>
-          <p class="py-4">
+          <p className="py-4">
             You've been selected for a chance to get one year of subscription to
             use Wikipedia for free!
           </p>
-          <div class="modal-action">
-          <button onClick={() => handleDelete()} class="btn btn-xs btn-error">Delete</button>
-            <label for="delete-confirm-modal" class="btn btn-xs btn-error">
+          <div className="modal-action">
+            <button
+              onClick={() => handleDelete()}
+              className="btn btn-xs btn-error"
+            >
+              Delete
+            </button>
+            <label
+              htmlFor="delete-confirm-modal"
+              className="btn btn-xs btn-error"
+            >
               Cancel
             </label>
           </div>
